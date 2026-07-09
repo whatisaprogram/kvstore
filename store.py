@@ -49,6 +49,7 @@ def parse(line):
             dictionary = decode(line[1].strip())
         elif line[0].lower().strip() == "create":
             with open("./"+line[1], 'wb') as f:
+                dictionary = {}
                 open_file = line[1]
                 print("created database " +line[1])
         elif(open_file == ""):
@@ -56,7 +57,7 @@ def parse(line):
         elif (line[0].lower().strip() == "delete"):
             if line[1] in dictionary:
                 del dictionary[line[1]]
-            append(line[0], "0x00000000", open_file)
+            append(line[1], "0x00000000", open_file)
         else:
             append(line[0], line[1], open_file)
             dictionary[line[0]] = line[1]
@@ -69,7 +70,7 @@ def parse(line):
             if line[0] in dictionary:
                 print(dictionary[line[0]])
             else:
-                "key "+line[0]+ "not found"
+                print ("key "+line[0]+ " not found")
 
 def input_loop():
     user_input = input()
