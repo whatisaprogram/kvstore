@@ -34,7 +34,7 @@ def decode(filename):
             key = f.read(keylen).decode()
             value = f.read(valuelen).decode()
             if value == "0x00000000":
-                del store[key]
+                store.pop(key, None)
             else:
                 store[key] = value
     return store
